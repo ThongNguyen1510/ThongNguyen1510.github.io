@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="vi" dir="auto" data-theme="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Jackson | Blog của Thông</title>
+<meta name="keywords" content="">
+<meta name="description" content="Chia sẻ kiến thức về Java, JavaScript và lập trình mạng">
+<meta name="author" content="Lập trình viên">
+<link rel="canonical" href="https://ThongNguyen1510.github.io/tags/jackson/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://ThongNguyen1510.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://ThongNguyen1510.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://ThongNguyen1510.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://ThongNguyen1510.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://ThongNguyen1510.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="https://ThongNguyen1510.github.io/tags/jackson/index.xml" title="rss">
+<link rel="alternate" hreflang="vi" href="https://ThongNguyen1510.github.io/tags/jackson/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://ThongNguyen1510.github.io/tags/jackson/">
+  <meta property="og:site_name" content="Blog của Thông">
+  <meta property="og:title" content="Jackson">
+  <meta property="og:description" content="Chia sẻ kiến thức về Java, JavaScript và lập trình mạng">
+  <meta property="og:locale" content="vi">
+  <meta property="og:type" content="website">
+      <meta property="og:image" content="https://ThongNguyen1510.github.io/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ThongNguyen1510.github.io/og-image.png">
+<meta name="twitter:title" content="Jackson">
+<meta name="twitter:description" content="Chia sẻ kiến thức về Java, JavaScript và lập trình mạng">
+
+</head>
+<body class="list" id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://ThongNguyen1510.github.io/" accesskey="h" title="Blog của Thông (Alt + H)">Blog của Thông</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://ThongNguyen1510.github.io/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://ThongNguyen1510.github.io/posts" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://ThongNguyen1510.github.io/about" title="Giới thiệu">
+                    <span>Giới thiệu</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://ThongNguyen1510.github.io/search" title="Tìm kiếm">
+                    <span>Tìm kiếm</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header">
+  <h1>
+    Jackson
+  </h1>
+</header>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Xử lý JSON trong Java - Sử dụng Jackson
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Giới thiệu Jackson Jackson là thư viện Java mạnh mẽ cho xử lý JSON. Nó hỗ trợ serialization và deserialization tự động.
+Thêm Dependency &lt;dependency&gt; &lt;groupId&gt;com.fasterxml.jackson.core&lt;/groupId&gt; &lt;artifactId&gt;jackson-databind&lt;/artifactId&gt; &lt;version&gt;2.15.0&lt;/version&gt; &lt;/dependency&gt; Model Class import com.fasterxml.jackson.annotation.JsonProperty; import com.fasterxml.jackson.annotation.JsonIgnore; import lombok.*; @Data @NoArgsConstructor @AllArgsConstructor public class User { @JsonProperty(&#34;user_id&#34;) private Long id; private String name; private String email; @JsonIgnore private String password; private List&lt;Post&gt; posts; } @Data @NoArgsConstructor @AllArgsConstructor public class Post { private Long id; private String title; private String content; } Serialization (Object → JSON) import com.fasterxml.jackson.databind.ObjectMapper; public class JsonSerializationExample { public static void main(String[] args) throws Exception { ObjectMapper mapper = new ObjectMapper(); // Tạo object User user = new User( 1L, &#34;Nguyễn Văn A&#34;, &#34;a@example.com&#34;, &#34;secret123&#34;, new ArrayList&lt;&gt;() ); // Convert object to JSON string String jsonString = mapper.writeValueAsString(user); System.out.println(jsonString); // Pretty print String prettyJson = mapper.writerWithDefaultPrettyPrinter() .writeValueAsString(user); System.out.println(prettyJson); // Write to file mapper.writeValue(new File(&#34;user.json&#34;), user); } } Deserialization (JSON → Object) public class JsonDeserializationExample { public static void main(String[] args) throws Exception { ObjectMapper mapper = new ObjectMapper(); String json = &#34;{&#34; &#43; &#34;\&#34;user_id\&#34;: 1,&#34; &#43; &#34;\&#34;name\&#34;: \&#34;Nguyễn Văn A\&#34;,&#34; &#43; &#34;\&#34;email\&#34;: \&#34;a@example.com\&#34;&#34; &#43; &#34;}&#34;; // Convert JSON string to object User user = mapper.readValue(json, User.class); System.out.println(&#34;ID: &#34; &#43; user.getId()); System.out.println(&#34;Name: &#34; &#43; user.getName()); // Read from file User userFromFile = mapper.readValue( new File(&#34;user.json&#34;), User.class ); // Read as List String jsonArray = &#34;[&#34; &#43; json &#43; &#34;]&#34;; List&lt;User&gt; users = mapper.readValue( jsonArray, mapper.getTypeFactory().constructCollectionType( List.class, User.class ) ); } } Custom Serialization import com.fasterxml.jackson.core.JsonGenerator; import com.fasterxml.jackson.databind.JsonSerializer; import com.fasterxml.jackson.databind.SerializerProvider; import java.io.IOException; public class CustomUserSerializer extends JsonSerializer&lt;User&gt; { @Override public void serialize(User user, JsonGenerator gen, SerializerProvider provider) throws IOException { gen.writeStartObject(); gen.writeNumberField(&#34;id&#34;, user.getId()); gen.writeStringField(&#34;fullName&#34;, user.getName().toUpperCase()); gen.writeStringField(&#34;contact&#34;, user.getEmail()); gen.writeArrayFieldStart(&#34;posts&#34;); for (Post post : user.getPosts()) { gen.writeObject(post); } gen.writeEndArray(); gen.writeEndObject(); } } // Sử dụng @JsonSerialize(using = CustomUserSerializer.class) public class User { // ... } Custom Deserialization import com.fasterxml.jackson.core.JsonParser; import com.fasterxml.jackson.databind.DeserializationContext; import com.fasterxml.jackson.databind.JsonDeserializer; import java.io.IOException; public class CustomUserDeserializer extends JsonDeserializer&lt;User&gt; { @Override public User deserialize(JsonParser parser, DeserializationContext context) throws IOException { User user = new User(); while (parser.nextToken() != null) { String fieldName = parser.getCurrentName(); parser.nextToken(); if (&#34;user_id&#34;.equals(fieldName)) { user.setId(parser.getLongValue()); } else if (&#34;name&#34;.equals(fieldName)) { user.setName(parser.getText()); } // ... } return user; } } Xử lý lỗi public class JsonErrorHandling { public static void main(String[] args) { ObjectMapper mapper = new ObjectMapper(); String invalidJson = &#34;{\&#34;name\&#34;: \&#34;John\&#34;, invalid}&#34;; try { User user = mapper.readValue(invalidJson, User.class); } catch (JsonMappingException e) { System.out.println(&#34;Lỗi mapping: &#34; &#43; e.getMessage()); } catch (JsonParseException e) { System.out.println(&#34;Lỗi parse: &#34; &#43; e.getMessage()); } catch (IOException e) { System.out.println(&#34;Lỗi IO: &#34; &#43; e.getMessage()); } } } Best Practices Sử dụng annotations cho kiểm soát chi tiết Xử lý null values một cách cẩn thận Validate JSON input Sử dụng versioning cho API changes Document JSON structure Kết luận Jackson là thư viện tuyệt vời cho xử lý JSON trong Java. Nó làm cho việc làm việc với dữ liệu JSON trở nên đơn giản và an toàn.
+</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-12-07 00:00:00 +0000 UTC'>7 tháng 12, 2024</span>&nbsp;·&nbsp;<span>Lập trình viên</span></footer>
+  <a class="entry-link" aria-label="post link to Xử lý JSON trong Java - Sử dụng Jackson" href="https://ThongNguyen1510.github.io/posts/java-json-jackson/"></a>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://ThongNguyen1510.github.io/">Blog của Thông</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

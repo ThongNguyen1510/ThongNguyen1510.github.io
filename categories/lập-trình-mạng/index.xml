@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Lập Trình Mạng on Blog của Thông</title>
+    <link>https://ThongNguyen1510.github.io/categories/l%E1%BA%ADp-tr%C3%ACnh-m%E1%BA%A1ng/</link>
+    <description>Recent content in Lập Trình Mạng on Blog của Thông</description>
+    <image>
+      <title>Blog của Thông</title>
+      <url>https://ThongNguyen1510.github.io/og-image.png</url>
+      <link>https://ThongNguyen1510.github.io/og-image.png</link>
+    </image>
+    <generator>Hugo -- 0.153.1</generator>
+    <language>vi</language>
+    <lastBuildDate>Sun, 15 Dec 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://ThongNguyen1510.github.io/categories/l%E1%BA%ADp-tr%C3%ACnh-m%E1%BA%A1ng/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Lập trình mạng với Java - Các khái niệm cơ bản</title>
+      <link>https://ThongNguyen1510.github.io/posts/java-networking-basics/</link>
+      <pubDate>Sun, 15 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://ThongNguyen1510.github.io/posts/java-networking-basics/</guid>
+      <description>Học các khái niệm cơ bản về lập trình mạng trong Java bao gồm Socket, TCP/IP và các giao thức mạng.</description>
+    </item>
+    <item>
+      <title>Xây dựng Server TCP/IP với Java</title>
+      <link>https://ThongNguyen1510.github.io/posts/java-tcp-server/</link>
+      <pubDate>Sat, 14 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://ThongNguyen1510.github.io/posts/java-tcp-server/</guid>
+      <description>Hướng dẫn chi tiết cách xây dựng một server TCP/IP sử dụng Java ServerSocket.</description>
+    </item>
+    <item>
+      <title>Khám phá UDP Protocol trong Java</title>
+      <link>https://ThongNguyen1510.github.io/posts/java-udp-protocol/</link>
+      <pubDate>Fri, 13 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://ThongNguyen1510.github.io/posts/java-udp-protocol/</guid>
+      <description>Tìm hiểu về UDP (User Datagram Protocol) và cách sử dụng nó trong Java.</description>
+    </item>
+    <item>
+      <title>Lập trình đa luồng trong Java cho ứng dụng mạng</title>
+      <link>https://ThongNguyen1510.github.io/posts/java-multithreading/</link>
+      <pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://ThongNguyen1510.github.io/posts/java-multithreading/</guid>
+      <description>Cách sử dụng multi-threading để xử lý nhiều client cùng lúc trong Java.</description>
+    </item>
+    <item>
+      <title>Căn bản về JavaScript Async/Await cho lập trình mạng</title>
+      <link>https://ThongNguyen1510.github.io/posts/javascript-async-await/</link>
+      <pubDate>Wed, 11 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://ThongNguyen1510.github.io/posts/javascript-async-await/</guid>
+      <description>Hướng dẫn sử dụng Async/Await trong JavaScript để xử lý các hoạt động mạng không đồng bộ.</description>
+    </item>
+    <item>
+      <title>Xây dựng Server Node.js với Express</title>
+      <link>https://ThongNguyen1510.github.io/posts/javascript-express-server/</link>
+      <pubDate>Tue, 10 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://ThongNguyen1510.github.io/posts/javascript-express-server/</guid>
+      <description>Hướng dẫn tạo một server mạng đơn giản sử dụng Node.js và Express framework.</description>
+    </item>
+    <item>
+      <title>WebSocket - Giao tiếp thời gian thực với JavaScript</title>
+      <link>https://ThongNguyen1510.github.io/posts/javascript-websocket/</link>
+      <pubDate>Mon, 09 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://ThongNguyen1510.github.io/posts/javascript-websocket/</guid>
+      <description>Tìm hiểu về WebSocket và cách sử dụng nó để xây dựng các ứng dụng giao tiếp thời gian thực.</description>
+    </item>
+    <item>
+      <title>RESTful API Design với Java Spring Boot</title>
+      <link>https://ThongNguyen1510.github.io/posts/java-spring-boot-rest/</link>
+      <pubDate>Sun, 08 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://ThongNguyen1510.github.io/posts/java-spring-boot-rest/</guid>
+      <description>Hướng dẫn thiết kế và xây dựng RESTful API sử dụng Java Spring Boot framework.</description>
+    </item>
+    <item>
+      <title>Xử lý JSON trong Java - Sử dụng Jackson</title>
+      <link>https://ThongNguyen1510.github.io/posts/java-json-jackson/</link>
+      <pubDate>Sat, 07 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://ThongNguyen1510.github.io/posts/java-json-jackson/</guid>
+      <description>Hướng dẫn sử dụng thư viện Jackson để serialize và deserialize JSON trong Java.</description>
+    </item>
+    <item>
+      <title>Fetch API và HTTP Requests trong JavaScript</title>
+      <link>https://ThongNguyen1510.github.io/posts/javascript-fetch-api/</link>
+      <pubDate>Fri, 06 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://ThongNguyen1510.github.io/posts/javascript-fetch-api/</guid>
+      <description>Hướng dẫn sử dụng Fetch API để gọi các HTTP requests từ JavaScript.</description>
+    </item>
+  </channel>
+</rss>

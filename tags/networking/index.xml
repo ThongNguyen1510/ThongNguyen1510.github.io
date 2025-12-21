@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Networking on Blog của Thông</title>
+    <link>https://ThongNguyen1510.github.io/tags/networking/</link>
+    <description>Recent content in Networking on Blog của Thông</description>
+    <image>
+      <title>Blog của Thông</title>
+      <url>https://ThongNguyen1510.github.io/og-image.png</url>
+      <link>https://ThongNguyen1510.github.io/og-image.png</link>
+    </image>
+    <generator>Hugo -- 0.153.1</generator>
+    <language>vi</language>
+    <lastBuildDate>Sun, 15 Dec 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://ThongNguyen1510.github.io/tags/networking/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Lập trình mạng với Java - Các khái niệm cơ bản</title>
+      <link>https://ThongNguyen1510.github.io/posts/java-networking-basics/</link>
+      <pubDate>Sun, 15 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://ThongNguyen1510.github.io/posts/java-networking-basics/</guid>
+      <description>Học các khái niệm cơ bản về lập trình mạng trong Java bao gồm Socket, TCP/IP và các giao thức mạng.</description>
+    </item>
+    <item>
+      <title>Khám phá UDP Protocol trong Java</title>
+      <link>https://ThongNguyen1510.github.io/posts/java-udp-protocol/</link>
+      <pubDate>Fri, 13 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://ThongNguyen1510.github.io/posts/java-udp-protocol/</guid>
+      <description>Tìm hiểu về UDP (User Datagram Protocol) và cách sử dụng nó trong Java.</description>
+    </item>
+    <item>
+      <title>Căn bản về JavaScript Async/Await cho lập trình mạng</title>
+      <link>https://ThongNguyen1510.github.io/posts/javascript-async-await/</link>
+      <pubDate>Wed, 11 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://ThongNguyen1510.github.io/posts/javascript-async-await/</guid>
+      <description>Hướng dẫn sử dụng Async/Await trong JavaScript để xử lý các hoạt động mạng không đồng bộ.</description>
+    </item>
+  </channel>
+</rss>

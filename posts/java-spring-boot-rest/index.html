@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="vi" dir="auto" data-theme="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>RESTful API Design với Java Spring Boot | Blog của Thông</title>
+<meta name="keywords" content="Java, Spring Boot, REST API">
+<meta name="description" content="Hướng dẫn thiết kế và xây dựng RESTful API sử dụng Java Spring Boot framework.">
+<meta name="author" content="Lập trình viên">
+<link rel="canonical" href="https://ThongNguyen1510.github.io/posts/java-spring-boot-rest/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://ThongNguyen1510.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://ThongNguyen1510.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://ThongNguyen1510.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://ThongNguyen1510.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://ThongNguyen1510.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="vi" href="https://ThongNguyen1510.github.io/posts/java-spring-boot-rest/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://ThongNguyen1510.github.io/posts/java-spring-boot-rest/">
+  <meta property="og:site_name" content="Blog của Thông">
+  <meta property="og:title" content="RESTful API Design với Java Spring Boot">
+  <meta property="og:description" content="Hướng dẫn thiết kế và xây dựng RESTful API sử dụng Java Spring Boot framework.">
+  <meta property="og:locale" content="vi">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-12-08T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-12-08T00:00:00+00:00">
+    <meta property="article:tag" content="Java">
+    <meta property="article:tag" content="Spring Boot">
+    <meta property="article:tag" content="REST API">
+      <meta property="og:image" content="https://ThongNguyen1510.github.io/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ThongNguyen1510.github.io/og-image.png">
+<meta name="twitter:title" content="RESTful API Design với Java Spring Boot">
+<meta name="twitter:description" content="Hướng dẫn thiết kế và xây dựng RESTful API sử dụng Java Spring Boot framework.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://ThongNguyen1510.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "RESTful API Design với Java Spring Boot",
+      "item": "https://ThongNguyen1510.github.io/posts/java-spring-boot-rest/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "RESTful API Design với Java Spring Boot",
+  "name": "RESTful API Design với Java Spring Boot",
+  "description": "Hướng dẫn thiết kế và xây dựng RESTful API sử dụng Java Spring Boot framework.",
+  "keywords": [
+    "Java", "Spring Boot", "REST API"
+  ],
+  "articleBody": "Giới thiệu REST REST (Representational State Transfer) là một kiến trúc phần mềm dựa trên HTTP cho các dịch vụ web.\nNguyên tắc REST Stateless: Mỗi request chứa toàn bộ thông tin cần thiết Resource-based: Sử dụng URLs để biểu diễn tài nguyên Standard methods: GET, POST, PUT, DELETE Representation: JSON hoặc XML Thiết lập Spring Boot # Sử dụng Spring Initializr hoặc mvn archetype:generate -DgroupId=com.example -DartifactId=rest-api Model và Repository import javax.persistence.*; import lombok.*; @Entity @Data @NoArgsConstructor @AllArgsConstructor public class Post { @Id @GeneratedValue(strategy = GenerationType.IDENTITY) private Long id; private String title; private String content; private String author; } // Repository import org.springframework.data.jpa.repository.JpaRepository; public interface PostRepository extends JpaRepository\u003cPost, Long\u003e { List\u003cPost\u003e findByAuthor(String author); } Controller RESTful import org.springframework.beans.factory.annotation.Autowired; import org.springframework.http.HttpStatus; import org.springframework.http.ResponseEntity; import org.springframework.web.bind.annotation.*; import java.util.List; @RestController @RequestMapping(\"/api/posts\") @CrossOrigin(origins = \"*\") public class PostController { @Autowired private PostRepository postRepository; // GET - Lấy tất cả bài viết @GetMapping public ResponseEntity\u003cList\u003cPost\u003e\u003e getAllPosts() { List\u003cPost\u003e posts = postRepository.findAll(); return ResponseEntity.ok(posts); } // GET - Lấy bài viết theo ID @GetMapping(\"/{id}\") public ResponseEntity\u003cPost\u003e getPostById(@PathVariable Long id) { return postRepository.findById(id) .map(ResponseEntity::ok) .orElse(ResponseEntity.notFound().build()); } // POST - Tạo bài viết mới @PostMapping public ResponseEntity\u003cPost\u003e createPost(@RequestBody Post post) { Post savedPost = postRepository.save(post); return ResponseEntity .status(HttpStatus.CREATED) .body(savedPost); } // PUT - Cập nhật bài viết @PutMapping(\"/{id}\") public ResponseEntity\u003cPost\u003e updatePost( @PathVariable Long id, @RequestBody Post postDetails) { return postRepository.findById(id) .map(post -\u003e { post.setTitle(postDetails.getTitle()); post.setContent(postDetails.getContent()); post.setAuthor(postDetails.getAuthor()); return ResponseEntity.ok(postRepository.save(post)); }) .orElse(ResponseEntity.notFound().build()); } // DELETE - Xóa bài viết @DeleteMapping(\"/{id}\") public ResponseEntity\u003c?\u003e deletePost(@PathVariable Long id) { return postRepository.findById(id) .map(post -\u003e { postRepository.delete(post); return ResponseEntity.ok().build(); }) .orElse(ResponseEntity.notFound().build()); } // GET - Tìm bài viết theo tác giả @GetMapping(\"/author/{author}\") public ResponseEntity\u003cList\u003cPost\u003e\u003e getPostsByAuthor(@PathVariable String author) { List\u003cPost\u003e posts = postRepository.findByAuthor(author); return ResponseEntity.ok(posts); } } HTTP Status Codes 200 OK - Yêu cầu thành công\r201 Created - Tài nguyên tạo mới\r204 No Content - Thành công không có nội dung\r400 Bad Request - Yêu cầu không hợp lệ\r401 Unauthorized - Chưa xác thực\r403 Forbidden - Không có quyền\r404 Not Found - Không tìm thấy\r500 Internal Server Error - Lỗi server Exception Handling import org.springframework.http.HttpStatus; import org.springframework.web.bind.annotation.*; @RestControllerAdvice public class GlobalExceptionHandler { @ExceptionHandler(ResourceNotFoundException.class) @ResponseStatus(HttpStatus.NOT_FOUND) public ErrorResponse handleNotFound(ResourceNotFoundException ex) { return new ErrorResponse(\"Không tìm thấy\", ex.getMessage()); } @ExceptionHandler(Exception.class) @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR) public ErrorResponse handleGeneral(Exception ex) { return new ErrorResponse(\"Lỗi server\", ex.getMessage()); } } Testing API # GET curl http://localhost:8080/api/posts # POST curl -X POST http://localhost:8080/api/posts \\ -H \"Content-Type: application/json\" \\ -d '{\"title\":\"Bài mới\",\"content\":\"Nội dung\",\"author\":\"Tác giả\"}' # PUT curl -X PUT http://localhost:8080/api/posts/1 \\ -H \"Content-Type: application/json\" \\ -d '{\"title\":\"Cập nhật\",\"content\":\"Nội dung mới\",\"author\":\"Tác giả\"}' # DELETE curl -X DELETE http://localhost:8080/api/posts/1 Kết luận Spring Boot làm cho việc xây dựng RESTful API trở nên đơn giản và hiệu quả. Nó cung cấp tất cả công cụ cần thiết cho phát triển ứng dụng web hiện đại.\n",
+  "wordCount" : "462",
+  "inLanguage": "vi",
+  "image": "https://ThongNguyen1510.github.io/og-image.png","datePublished": "2024-12-08T00:00:00Z",
+  "dateModified": "2024-12-08T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Lập trình viên"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://ThongNguyen1510.github.io/posts/java-spring-boot-rest/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Blog của Thông",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://ThongNguyen1510.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://ThongNguyen1510.github.io/" accesskey="h" title="Blog của Thông (Alt + H)">Blog của Thông</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://ThongNguyen1510.github.io/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://ThongNguyen1510.github.io/posts" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://ThongNguyen1510.github.io/about" title="Giới thiệu">
+                    <span>Giới thiệu</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://ThongNguyen1510.github.io/search" title="Tìm kiếm">
+                    <span>Tìm kiếm</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      RESTful API Design với Java Spring Boot
+    </h1>
+    <div class="post-description">
+      Hướng dẫn thiết kế và xây dựng RESTful API sử dụng Java Spring Boot framework.
+    </div>
+    <div class="post-meta"><span title='2024-12-08 00:00:00 +0000 UTC'>8 tháng 12, 2024</span>&nbsp;·&nbsp;<span>Lập trình viên</span>
+
+</div>
+  </header> 
+  <div class="post-content"><h2 id="giới-thiệu-rest">Giới thiệu REST<a hidden class="anchor" aria-hidden="true" href="#giới-thiệu-rest">#</a></h2>
+<p>REST (Representational State Transfer) là một kiến trúc phần mềm dựa trên HTTP cho các dịch vụ web.</p>
+<h2 id="nguyên-tắc-rest">Nguyên tắc REST<a hidden class="anchor" aria-hidden="true" href="#nguyên-tắc-rest">#</a></h2>
+<ol>
+<li><strong>Stateless</strong>: Mỗi request chứa toàn bộ thông tin cần thiết</li>
+<li><strong>Resource-based</strong>: Sử dụng URLs để biểu diễn tài nguyên</li>
+<li><strong>Standard methods</strong>: GET, POST, PUT, DELETE</li>
+<li><strong>Representation</strong>: JSON hoặc XML</li>
+</ol>
+<h2 id="thiết-lập-spring-boot">Thiết lập Spring Boot<a hidden class="anchor" aria-hidden="true" href="#thiết-lập-spring-boot">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Sử dụng Spring Initializr hoặc</span>
+</span></span><span style="display:flex;"><span>mvn archetype:generate -DgroupId<span style="color:#f92672">=</span>com.example -DartifactId<span style="color:#f92672">=</span>rest-api
+</span></span></code></pre></div><h2 id="model-và-repository">Model và Repository<a hidden class="anchor" aria-hidden="true" href="#model-và-repository">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> javax.persistence.*;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> lombok.*;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Entity</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Data</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@NoArgsConstructor</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@AllArgsConstructor</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Post</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Id</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@GeneratedValue</span>(strategy <span style="color:#f92672">=</span> GenerationType.<span style="color:#a6e22e">IDENTITY</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Long id;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String title;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String content;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String author;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Repository</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.data.jpa.repository.JpaRepository;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">PostRepository</span> <span style="color:#66d9ef">extends</span> JpaRepository<span style="color:#f92672">&lt;</span>Post, Long<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>Post<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">findByAuthor</span>(String author);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="controller-restful">Controller RESTful<a hidden class="anchor" aria-hidden="true" href="#controller-restful">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.beans.factory.annotation.Autowired;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.http.HttpStatus;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.http.ResponseEntity;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.web.bind.annotation.*;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.List;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@RestController</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@RequestMapping</span>(<span style="color:#e6db74">&#34;/api/posts&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@CrossOrigin</span>(origins <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;*&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PostController</span> {
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Autowired</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> PostRepository postRepository;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// GET - Lấy tất cả bài viết</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@GetMapping</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> ResponseEntity<span style="color:#f92672">&lt;</span>List<span style="color:#f92672">&lt;</span>Post<span style="color:#f92672">&gt;&gt;</span> <span style="color:#a6e22e">getAllPosts</span>() {
+</span></span><span style="display:flex;"><span>        List<span style="color:#f92672">&lt;</span>Post<span style="color:#f92672">&gt;</span> posts <span style="color:#f92672">=</span> postRepository.<span style="color:#a6e22e">findAll</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> ResponseEntity.<span style="color:#a6e22e">ok</span>(posts);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// GET - Lấy bài viết theo ID</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@GetMapping</span>(<span style="color:#e6db74">&#34;/{id}&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> ResponseEntity<span style="color:#f92672">&lt;</span>Post<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getPostById</span>(<span style="color:#a6e22e">@PathVariable</span> Long id) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> postRepository.<span style="color:#a6e22e">findById</span>(id)
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">map</span>(ResponseEntity::ok)
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">orElse</span>(ResponseEntity.<span style="color:#a6e22e">notFound</span>().<span style="color:#a6e22e">build</span>());
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// POST - Tạo bài viết mới</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@PostMapping</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> ResponseEntity<span style="color:#f92672">&lt;</span>Post<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">createPost</span>(<span style="color:#a6e22e">@RequestBody</span> Post post) {
+</span></span><span style="display:flex;"><span>        Post savedPost <span style="color:#f92672">=</span> postRepository.<span style="color:#a6e22e">save</span>(post);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> ResponseEntity
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">status</span>(HttpStatus.<span style="color:#a6e22e">CREATED</span>)
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">body</span>(savedPost);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// PUT - Cập nhật bài viết</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@PutMapping</span>(<span style="color:#e6db74">&#34;/{id}&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> ResponseEntity<span style="color:#f92672">&lt;</span>Post<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">updatePost</span>(
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">@PathVariable</span> Long id,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">@RequestBody</span> Post postDetails) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> postRepository.<span style="color:#a6e22e">findById</span>(id)
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">map</span>(post <span style="color:#f92672">-&gt;</span> {
+</span></span><span style="display:flex;"><span>                post.<span style="color:#a6e22e">setTitle</span>(postDetails.<span style="color:#a6e22e">getTitle</span>());
+</span></span><span style="display:flex;"><span>                post.<span style="color:#a6e22e">setContent</span>(postDetails.<span style="color:#a6e22e">getContent</span>());
+</span></span><span style="display:flex;"><span>                post.<span style="color:#a6e22e">setAuthor</span>(postDetails.<span style="color:#a6e22e">getAuthor</span>());
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> ResponseEntity.<span style="color:#a6e22e">ok</span>(postRepository.<span style="color:#a6e22e">save</span>(post));
+</span></span><span style="display:flex;"><span>            })
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">orElse</span>(ResponseEntity.<span style="color:#a6e22e">notFound</span>().<span style="color:#a6e22e">build</span>());
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// DELETE - Xóa bài viết</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@DeleteMapping</span>(<span style="color:#e6db74">&#34;/{id}&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> ResponseEntity<span style="color:#f92672">&lt;?&gt;</span> deletePost(<span style="color:#a6e22e">@PathVariable</span> Long id) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> postRepository.<span style="color:#a6e22e">findById</span>(id)
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">map</span>(post <span style="color:#f92672">-&gt;</span> {
+</span></span><span style="display:flex;"><span>                postRepository.<span style="color:#a6e22e">delete</span>(post);
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> ResponseEntity.<span style="color:#a6e22e">ok</span>().<span style="color:#a6e22e">build</span>();
+</span></span><span style="display:flex;"><span>            })
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">orElse</span>(ResponseEntity.<span style="color:#a6e22e">notFound</span>().<span style="color:#a6e22e">build</span>());
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// GET - Tìm bài viết theo tác giả</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@GetMapping</span>(<span style="color:#e6db74">&#34;/author/{author}&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> ResponseEntity<span style="color:#f92672">&lt;</span>List<span style="color:#f92672">&lt;</span>Post<span style="color:#f92672">&gt;&gt;</span> <span style="color:#a6e22e">getPostsByAuthor</span>(<span style="color:#a6e22e">@PathVariable</span> String author) {
+</span></span><span style="display:flex;"><span>        List<span style="color:#f92672">&lt;</span>Post<span style="color:#f92672">&gt;</span> posts <span style="color:#f92672">=</span> postRepository.<span style="color:#a6e22e">findByAuthor</span>(author);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> ResponseEntity.<span style="color:#a6e22e">ok</span>(posts);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="http-status-codes">HTTP Status Codes<a hidden class="anchor" aria-hidden="true" href="#http-status-codes">#</a></h2>
+<pre tabindex="0"><code>200 OK - Yêu cầu thành công
+201 Created - Tài nguyên tạo mới
+204 No Content - Thành công không có nội dung
+400 Bad Request - Yêu cầu không hợp lệ
+401 Unauthorized - Chưa xác thực
+403 Forbidden - Không có quyền
+404 Not Found - Không tìm thấy
+500 Internal Server Error - Lỗi server
+</code></pre><h2 id="exception-handling">Exception Handling<a hidden class="anchor" aria-hidden="true" href="#exception-handling">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.http.HttpStatus;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.web.bind.annotation.*;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@RestControllerAdvice</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">GlobalExceptionHandler</span> {
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@ExceptionHandler</span>(ResourceNotFoundException.<span style="color:#a6e22e">class</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@ResponseStatus</span>(HttpStatus.<span style="color:#a6e22e">NOT_FOUND</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> ErrorResponse <span style="color:#a6e22e">handleNotFound</span>(ResourceNotFoundException ex) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> ErrorResponse(<span style="color:#e6db74">&#34;Không tìm thấy&#34;</span>, ex.<span style="color:#a6e22e">getMessage</span>());
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@ExceptionHandler</span>(Exception.<span style="color:#a6e22e">class</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@ResponseStatus</span>(HttpStatus.<span style="color:#a6e22e">INTERNAL_SERVER_ERROR</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> ErrorResponse <span style="color:#a6e22e">handleGeneral</span>(Exception ex) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> ErrorResponse(<span style="color:#e6db74">&#34;Lỗi server&#34;</span>, ex.<span style="color:#a6e22e">getMessage</span>());
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="testing-api">Testing API<a hidden class="anchor" aria-hidden="true" href="#testing-api">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># GET</span>
+</span></span><span style="display:flex;"><span>curl http://localhost:8080/api/posts
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># POST</span>
+</span></span><span style="display:flex;"><span>curl -X POST http://localhost:8080/api/posts <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{&#34;title&#34;:&#34;Bài mới&#34;,&#34;content&#34;:&#34;Nội dung&#34;,&#34;author&#34;:&#34;Tác giả&#34;}&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># PUT</span>
+</span></span><span style="display:flex;"><span>curl -X PUT http://localhost:8080/api/posts/1 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{&#34;title&#34;:&#34;Cập nhật&#34;,&#34;content&#34;:&#34;Nội dung mới&#34;,&#34;author&#34;:&#34;Tác giả&#34;}&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># DELETE</span>
+</span></span><span style="display:flex;"><span>curl -X DELETE http://localhost:8080/api/posts/1
+</span></span></code></pre></div><h2 id="kết-luận">Kết luận<a hidden class="anchor" aria-hidden="true" href="#kết-luận">#</a></h2>
+<p>Spring Boot làm cho việc xây dựng RESTful API trở nên đơn giản và hiệu quả. Nó cung cấp tất cả công cụ cần thiết cho phát triển ứng dụng web hiện đại.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://ThongNguyen1510.github.io/tags/java/">Java</a></li>
+      <li><a href="https://ThongNguyen1510.github.io/tags/spring-boot/">Spring Boot</a></li>
+      <li><a href="https://ThongNguyen1510.github.io/tags/rest-api/">REST API</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://ThongNguyen1510.github.io/">Blog của Thông</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

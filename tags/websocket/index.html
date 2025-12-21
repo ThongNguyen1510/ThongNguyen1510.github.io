@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="vi" dir="auto" data-theme="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>WebSocket | Blog của Thông</title>
+<meta name="keywords" content="">
+<meta name="description" content="Chia sẻ kiến thức về Java, JavaScript và lập trình mạng">
+<meta name="author" content="Lập trình viên">
+<link rel="canonical" href="https://ThongNguyen1510.github.io/tags/websocket/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://ThongNguyen1510.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://ThongNguyen1510.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://ThongNguyen1510.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://ThongNguyen1510.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://ThongNguyen1510.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="https://ThongNguyen1510.github.io/tags/websocket/index.xml" title="rss">
+<link rel="alternate" hreflang="vi" href="https://ThongNguyen1510.github.io/tags/websocket/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://ThongNguyen1510.github.io/tags/websocket/">
+  <meta property="og:site_name" content="Blog của Thông">
+  <meta property="og:title" content="WebSocket">
+  <meta property="og:description" content="Chia sẻ kiến thức về Java, JavaScript và lập trình mạng">
+  <meta property="og:locale" content="vi">
+  <meta property="og:type" content="website">
+      <meta property="og:image" content="https://ThongNguyen1510.github.io/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ThongNguyen1510.github.io/og-image.png">
+<meta name="twitter:title" content="WebSocket">
+<meta name="twitter:description" content="Chia sẻ kiến thức về Java, JavaScript và lập trình mạng">
+
+</head>
+<body class="list" id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://ThongNguyen1510.github.io/" accesskey="h" title="Blog của Thông (Alt + H)">Blog của Thông</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://ThongNguyen1510.github.io/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://ThongNguyen1510.github.io/posts" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://ThongNguyen1510.github.io/about" title="Giới thiệu">
+                    <span>Giới thiệu</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://ThongNguyen1510.github.io/search" title="Tìm kiếm">
+                    <span>Tìm kiếm</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header">
+  <h1>
+    WebSocket
+  </h1>
+</header>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">WebSocket - Giao tiếp thời gian thực với JavaScript
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>WebSocket là gì? WebSocket cung cấp một kênh giao tiếp hai chiều qua một kết nối TCP duy nhất, lý tưởng cho các ứng dụng thời gian thực.
+WebSocket vs HTTP Tính chất HTTP WebSocket Hướng Một chiều Hai chiều Độ trễ Cao Thấp Overhead Cao Thấp Real-time Không Có Server WebSocket với Node.js const WebSocket = require(&#39;ws&#39;); const http = require(&#39;http&#39;); const server = http.createServer(); const wss = new WebSocket.Server({ server }); // Quản lý kết nối wss.on(&#39;connection&#39;, (ws) =&gt; { console.log(&#39;Client kết nối&#39;); // Nhận tin nhắn ws.on(&#39;message&#39;, (message) =&gt; { console.log(&#39;Nhận được:&#39;, message); // Gửi lại cho tất cả client wss.clients.forEach((client) =&gt; { if (client.readyState === WebSocket.OPEN) { client.send(`Broadcast: ${message}`); } }); }); // Khi client ngắt kết nối ws.on(&#39;close&#39;, () =&gt; { console.log(&#39;Client ngắt kết nối&#39;); }); // Lỗi xử lý ws.on(&#39;error&#39;, (error) =&gt; { console.error(&#39;Lỗi WebSocket:&#39;, error); }); }); server.listen(8080, () =&gt; { console.log(&#39;WebSocket server chạy trên ws://localhost:8080&#39;); }); Client WebSocket với JavaScript // Kết nối đến server const ws = new WebSocket(&#39;ws://localhost:8080&#39;); // Connection opened ws.addEventListener(&#39;open&#39;, (event) =&gt; { console.log(&#39;Kết nối thành công&#39;); ws.send(&#39;Xin chào server!&#39;); }); // Listen for messages ws.addEventListener(&#39;message&#39;, (event) =&gt; { console.log(&#39;Tin nhắn từ server:&#39;, event.data); updateUI(event.data); }); // Connection closed ws.addEventListener(&#39;close&#39;, (event) =&gt; { console.log(&#39;Kết nối đóng&#39;); }); // Connection error ws.addEventListener(&#39;error&#39;, (event) =&gt; { console.error(&#39;Lỗi kết nối:&#39;, event); }); // Gửi tin nhắn function sendMessage(message) { if (ws.readyState === WebSocket.OPEN) { ws.send(message); } } Ứng dụng Chat thời gian thực // Server - chat-server.js const WebSocket = require(&#39;ws&#39;); const http = require(&#39;http&#39;); const server = http.createServer(); const wss = new WebSocket.Server({ server }); const clients = new Set(); wss.on(&#39;connection&#39;, (ws) =&gt; { clients.add(ws); // Thông báo user mới broadcast(JSON.stringify({ type: &#39;user-joined&#39;, count: clients.size })); ws.on(&#39;message&#39;, (message) =&gt; { const data = JSON.parse(message); broadcast(JSON.stringify({ type: &#39;message&#39;, text: data.text, timestamp: new Date() })); }); ws.on(&#39;close&#39;, () =&gt; { clients.delete(ws); broadcast(JSON.stringify({ type: &#39;user-left&#39;, count: clients.size })); }); }); function broadcast(message) { clients.forEach((client) =&gt; { if (client.readyState === WebSocket.OPEN) { client.send(message); } }); } server.listen(8080); Best Practices Reconnection logic: Tự động kết nối lại khi bị ngắt Heartbeat: Gửi ping định kỳ để giữ kết nối Message validation: Kiểm tra dữ liệu đầu vào Resource cleanup: Đóng kết nối đúng cách Kết luận WebSocket là công nghệ mạnh mẽ cho các ứng dụng yêu cầu giao tiếp thời gian thực như chat, notification, và gaming.
+</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-12-09 00:00:00 +0000 UTC'>9 tháng 12, 2024</span>&nbsp;·&nbsp;<span>Lập trình viên</span></footer>
+  <a class="entry-link" aria-label="post link to WebSocket - Giao tiếp thời gian thực với JavaScript" href="https://ThongNguyen1510.github.io/posts/javascript-websocket/"></a>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://ThongNguyen1510.github.io/">Blog của Thông</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
